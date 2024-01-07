@@ -219,7 +219,10 @@ export default function AppFunctional(props) {
         let newStates = { newMessage: `${err.response.data.message}` };
 				getXYMessage(newStates);
       })
-      reset()
+      SetStates( (prevStates) => {
+        return {...prevStates, Email: ''}
+      })
+      
   }
 
 
