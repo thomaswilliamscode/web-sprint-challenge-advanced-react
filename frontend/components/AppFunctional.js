@@ -219,16 +219,19 @@ export default function AppFunctional(props) {
         let newStates = { newMessage: `${err.response.data.message}` };
 				getXYMessage(newStates);
       })
+      reset()
   }
 
 
   return (
 		<div id='wrapper' className={props.className}>
 			<div className='info'>
-				<h3 id='coordinates'>
-					{getCords()}
+				<h3 id='coordinates'>{getCords()}</h3>
+				<h3 id='steps'>
+					{states.Steps === 1
+						? `You moved ${states.Steps} time`
+						: `You moved ${states.Steps} times`}
 				</h3>
-				<h3 id='steps'>{`You moved ${states.Steps} times`}</h3>
 			</div>
 			<div id='grid'>
 				{[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
@@ -261,7 +264,13 @@ export default function AppFunctional(props) {
 				</button>
 			</div>
 			<form onSubmit={onSubmit}>
-				<input onChange={onChange} id='email' type='email' placeholder='type email' value={states.Email}></input>
+				<input
+					onChange={onChange}
+					id='email'
+					type='email'
+					placeholder='type email'
+					value={states.Email}
+				></input>
 				<input id='submit' type='submit'></input>
 			</form>
 		</div>
